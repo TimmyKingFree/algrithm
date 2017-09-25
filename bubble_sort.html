@@ -1,0 +1,29 @@
+<!DOCtype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>冒泡排序</title>
+    </head>
+    <body>
+        <script>
+            var i,j,flag=true;
+            function bubbleSort(arr){
+                for(var i=0;i<arr.length-1;i++){
+                    flag = true;
+                    for(var j=0;j<arr.length-i;j++){
+                        if(arr[j]>arr[j+1]){
+                            var tmp = arr[j];
+                            arr[j] = arr[j+1];
+                            arr[j+1] = tmp;
+                            flag = false;
+                        }
+                    }
+                    if(flag){
+                        return arr;
+                    }
+                }
+            }
+            console.log(bubbleSort([9,8,7,6,5,7,2,0,1,2,3]));
+        </script>
+    </body>
+</html>
