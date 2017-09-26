@@ -1,40 +1,46 @@
 <!DOCtype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>快速排序</title>
-    </head>
-    <body>
-        <script>
-            var arr = [9,5,7,3,6,0,1,4,6,2];
-            function quickSort(left,right){
-                var i=left,
-                    j=right,
-                    tmp = arr[left];
-                if(left>right){
-                    return;
-                }
-                while(i!=j){
-                    while(arr[j]>=tmp&&i<j){
-                        j--;
-                    }
-                    while(arr[i]<=tmp&&i<j){
-                        i++;
-                    }
-                    if(i<j){
-                        var t = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = t;
-                    }
-                }
-                arr[left] = arr[i];
-                arr[i] = tmp;
-                quickSort(left,i-1);
-                quickSort(i+1,right);
+
+<head>
+    <meta charset="utf-8">
+    <title>快速排序</title>
+</head>
+
+<body>
+    <script>
+        var arr = [];
+        function quickSort(left,right){
+            if(left>right){
                 return;
             }
-            quickSort(0,arr.length-1);
-            console.log(arr);
-        </script>
-    </body>
+            var i,j,tmp;
+            i = left;
+            j = right;
+            tmp = arr[left];
+            while(i!=j){
+                //控制i<j,是为了防止j超过i==j的位置之前
+                //为了能让i和j停在这个位置上不会超过去，如果超过去了就会一直遍历完整个数组，没有意义
+                while(arr[j]>=tmp&&i<j){
+                    j--;
+                }
+                while(arr[i]<=tmp&&i<j){
+                    i++;
+                }
+                var p = arr[i];
+                arr[i] = arr[j];
+                arr[j] = p;
+
+            }
+            arr[left] = arr[i];
+            arr[i] = tmp;
+            quickSort(left,i-1);
+            quickSort(i+1,right);
+            return;
+        }
+        arr = [9,8,7,6,5,4,3,2,1,2,3,4,5,6,7,8,9];
+        quickSort(0,arr.length-1);
+        console.log(arr);
+    </script>
+</body>
+
 </html>
