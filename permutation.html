@@ -1,0 +1,38 @@
+<!DOCtype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>全排列</title>
+    </head>
+    <body>
+        <script>
+            function permutation(num){
+                //记录手中有哪张牌是availiable的
+                var numStack = [];
+                var arr = [];
+                //数据初始化
+                for(var i=0;i<=num;i++){
+                    numStack[i] = 0;
+                }
+                function dfs(step){
+                    if(step == num+1){
+                        console.log(arr.toString().split(',').join(''));
+                        return;
+                    }
+                    //深度优先搜索算法
+                    for(var i=1;i<=num;i++){
+                        if(numStack[i]!=1){
+                            arr[step] = i;
+                            numStack[i] = 1;
+                            dfs(step+1);
+                            numStack[i] = 0;
+                        }
+                    }
+                    return;                    
+                }
+                dfs(1);
+            }
+            permutation(4);
+        </script>
+    </body>
+</html>
